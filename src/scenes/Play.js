@@ -5,12 +5,18 @@ class Play extends Phaser.Scene {
 
     preload() {
         // load images
-        this.load.image('rainforest', './assets/scene3.png');
-        this.load.image('treeman', './assets/treeman.png');
+        this.load.image('rainforest', './assets/background.png');
+        this.load.image('treeman', './assets/playerSprite.png');
         this.load.image('raindrop', './assets/raindrop.png');
+        this.load.image('slug', './assets/slugSprite0.png');
+        this.load.audio('rainCollision', './assets/rainCollect.wav');
+        this.load.audio('slugCollision', './assets/hitHurt.wav');
+        this.load.audio('gameBackground', './assets/rainBackground.mp3');
     }
     
     create() {
+        this.sound.play('gameBackground', {volume: .5, loop: true});
+
         this.background = this.add.tileSprite(0,0,640,480, 'rainforest').setOrigin(0,0);
         this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, 'treeman').setOrigin(.5,0);
 
@@ -25,6 +31,14 @@ class Play extends Phaser.Scene {
         this.rain8 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
         this.rain9 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
         this.rain10 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+
+        // create 5 falling slugs
+        this.slug1 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug2 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug3 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug4 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug5 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+
     
 
 
@@ -45,5 +59,10 @@ class Play extends Phaser.Scene {
         this.rain8.update();
         this.rain9.update();
         this.rain10.update();
+        this.slug1.update();
+        this.slug2.update();
+        this.slug3.update();
+        this.slug4.update();
+        this.slug5.update();
     }
 }

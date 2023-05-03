@@ -6,9 +6,9 @@ class Treeman extends Phaser.GameObjects.Sprite {
 
     update() {
         if (keyLEFT.isDown && this.x >= this.width) {
-            this.x -= 2;
+            this.x -= 3;
         } else if (keyRIGHT.isDown && this.x <= game.config.width - this.width) {
-            this.x += 2;
+            this.x += 3;
         }
     }
 }
