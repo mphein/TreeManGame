@@ -21,23 +21,23 @@ class Play extends Phaser.Scene {
         this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, 'treeman').setOrigin(.5,0);
 
         // create 10 raindrops
-        this.rain1 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain2 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain3 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain4 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain5 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain6 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain7 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain8 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain9 = new FallingObject(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain10 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain1 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain2 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain3 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain4 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain5 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain6 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain7 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain8 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain9 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain10 = new FallingFriend(this, Math.random() * game.config.width,0,Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
 
         // create 5 falling slugs
-        this.slug1 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
-        this.slug2 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
-        this.slug3 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
-        this.slug4 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
-        this.slug5 = new FallingObject(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug1 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug2 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug3 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug4 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug5 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
 
     
 

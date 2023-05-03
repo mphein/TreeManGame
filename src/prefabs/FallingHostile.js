@@ -1,4 +1,4 @@
-class FallingObject extends Phaser.GameObjects.Sprite {
+class FallingHostile extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, moveSpeed, texture, frame) {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
