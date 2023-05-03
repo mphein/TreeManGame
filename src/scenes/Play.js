@@ -63,63 +63,63 @@ class Play extends Phaser.Scene {
         this.slug5.update();
 
         //check collisions
-        if (this.checkSlugCollision(treeMan, slug1))
+        if (this.checkSlugCollision(this.treeMan, this.slug1))
         {
             
         }
-        if (this.checkSlugCollision(treeMan, slug2))
+        if (this.checkSlugCollision(this.treeMan, this.slug2))
         {
             
         }
-        if (this.checkSlugCollision(treeMan, slug3))
+        if (this.checkSlugCollision(this.treeMan, this.slug3))
         {
         
         }
-        if (this.checkSlugCollision(treeMan, slug4))
+        if (this.checkSlugCollision(this.treeMan, this.slug4))
         {
 
         }
-        if (this.checkSlugCollision(treeMan, slug5))
+        if (this.checkSlugCollision(this.treeMan, this.slug5))
         {
 
         }
-        if (this.checkRainCollision(treeMan, rain1))
+        if (this.checkRainCollision(this.treeMan, this.rain1))
         {
             
         }
-        if (this.checkRainCollision(treeMan, rain2))
+        if (this.checkRainCollision(this.treeMan, this.rain2))
         {
             
         }
-        if (this.checkRainCollision(treeMan, rain3))
+        if (this.checkRainCollision(this.treeMan, this.rain3))
         {
         
         }
-        if (this.checkRainCollision(treeMan, rain4))
+        if (this.checkRainCollision(this.treeMan, this.rain4))
         {
 
         }
-        if (this.checkRainCollision(treeMan, rain5))
+        if (this.checkRainCollision(this.treeMan, this.rain5))
         {
 
         }
-        if (this.checkRainCollision(treeMan, rain6))
+        if (this.checkRainCollision(this.treeMan, this.rain6))
         {
             
         }
-        if (this.checkRainCollision(treeMan, rain7))
+        if (this.checkRainCollision(this.treeMan, this.rain7))
         {
             
         }
-        if (this.checkRainCollision(treeMan, rain8))
+        if (this.checkRainCollision(this.treeMan, this.rain8))
         {
         
         }
-        if (this.checkRainCollision(treeMan, rain9))
+        if (this.checkRainCollision(this.treeMan, this.rain9))
         {
 
         }
-        if (this.checkRainCollision(treeMan, rain10))
+        if (this.checkRainCollision(this.treeMan, this.rain10))
         {
 
         }
