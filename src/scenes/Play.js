@@ -39,9 +39,6 @@ class Play extends Phaser.Scene {
         this.slug4 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
         this.slug5 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
 
-    
-
-
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);    
@@ -64,5 +61,100 @@ class Play extends Phaser.Scene {
         this.slug3.update();
         this.slug4.update();
         this.slug5.update();
+
+        //check collisions
+        if (this.checkSlugCollision(treeMan, slug1))
+        {
+            
+        }
+        if (this.checkSlugCollision(treeMan, slug2))
+        {
+            
+        }
+        if (this.checkSlugCollision(treeMan, slug3))
+        {
+        
+        }
+        if (this.checkSlugCollision(treeMan, slug4))
+        {
+
+        }
+        if (this.checkSlugCollision(treeMan, slug5))
+        {
+
+        }
+        if (this.checkRainCollision(treeMan, rain1))
+        {
+            
+        }
+        if (this.checkRainCollision(treeMan, rain2))
+        {
+            
+        }
+        if (this.checkRainCollision(treeMan, rain3))
+        {
+        
+        }
+        if (this.checkRainCollision(treeMan, rain4))
+        {
+
+        }
+        if (this.checkRainCollision(treeMan, rain5))
+        {
+
+        }
+        if (this.checkRainCollision(treeMan, rain6))
+        {
+            
+        }
+        if (this.checkRainCollision(treeMan, rain7))
+        {
+            
+        }
+        if (this.checkRainCollision(treeMan, rain8))
+        {
+        
+        }
+        if (this.checkRainCollision(treeMan, rain9))
+        {
+
+        }
+        if (this.checkRainCollision(treeMan, rain10))
+        {
+
+        }
+
+    }
+
+    checkSlugCollision(treeman, slug)
+    {
+        // simple AABB checking
+        if (slug.x < treeman.x + treeman.width && 
+            slug.x + slug.width > treeman.x &&
+            slug.y < treeman.y + treeman.height &&
+            slug.height + slug.y > treeman.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    checkRainCollision(treeman, rain)
+    {
+        // simple AABB checking
+        if (rain.x < treeman.x + treeman.width && 
+            rain.x + rain.width > treeman.x &&
+            rain.y < treeman.y + treeman.height &&
+            rain.height + rain.y > treeman.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
