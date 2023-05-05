@@ -9,13 +9,11 @@ class Play extends Phaser.Scene {
         this.load.image('treeman', './assets/playerSprite.png');
         this.load.image('raindrop', './assets/raindrop.png');
         this.load.image('slug', './assets/slugSprite0.png');
-        this.load.audio('rainCollision', './assets/rainCollect.wav');
-        this.load.audio('slugCollision', './assets/hitHurt.wav');
-        this.load.audio('gameBackground', './assets/rainBackground.mp3');
+
     }
     
-    create() {
-        this.sound.play('gameBackground', {volume: .5, loop: true});
+    create() 
+    {
 
         this.background = this.add.tileSprite(0,0,640,480, 'rainforest').setOrigin(0,0);
         this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, 'treeman').setOrigin(.5,0);
@@ -65,64 +63,68 @@ class Play extends Phaser.Scene {
         //check collisions
         if (this.checkSlugCollision(this.treeMan, this.slug1))
         {
+            this.sound.play('slugCollision', {volume: .1, loop: false});
             this.gameOver();
-            
         }
         if (this.checkSlugCollision(this.treeMan, this.slug2))
         {
+            this.sound.play('slugCollision', {volume: .1, loop: false});
             this.gameOver();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug3))
         {
+            this.sound.play('slugCollision', {volume: .1, loop: false});
             this.gameOver();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug4))
         {
+            this.sound.play('slugCollision', {volume: .1, loop: false});
             this.gameOver();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug5))
         {
+            this.sound.play('slugCollision', {volume: .1, loop: false});
             this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain1))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
         if (this.checkRainCollision(this.treeMan, this.rain2))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
         if (this.checkRainCollision(this.treeMan, this.rain3))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
         if (this.checkRainCollision(this.treeMan, this.rain4))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
         if (this.checkRainCollision(this.treeMan, this.rain5))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
         if (this.checkRainCollision(this.treeMan, this.rain6))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
         if (this.checkRainCollision(this.treeMan, this.rain7))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
         if (this.checkRainCollision(this.treeMan, this.rain8))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
         if (this.checkRainCollision(this.treeMan, this.rain9))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
         if (this.checkRainCollision(this.treeMan, this.rain10))
         {
-            this.gameOver();
+            this.sound.play('rainCollision', {volume: .1, loop: false});
         }
 
     }
@@ -130,10 +132,10 @@ class Play extends Phaser.Scene {
     checkSlugCollision(treeman, slug)
     {
         // simple AABB checking
-        if (slug.x < treeman.x + treeman.width && 
-            slug.x + slug.width > treeman.x &&
-            slug.y < treeman.y + treeman.height &&
-            slug.height + slug.y > treeman.y)
+        if (slug.x < treeman.x + 1/2 * treeman.width && 
+            slug.x + 1/2 * slug.width > treeman.x &&
+            slug.y < treeman.y + 1/2 * treeman.height &&
+            1/2 * slug.height + slug.y > treeman.y)
         {
             return true;
         }
@@ -146,10 +148,10 @@ class Play extends Phaser.Scene {
     checkRainCollision(treeman, rain)
     {
         // simple AABB checking
-        if (rain.x < treeman.x + treeman.width && 
-            rain.x + rain.width > treeman.x &&
-            rain.y < treeman.y + treeman.height &&
-            rain.height + rain.y > treeman.y)
+        if (rain.x < treeman.x + 1/2 * treeman.width && 
+            rain.x + 1/2 * rain.width > treeman.x &&
+            rain.y < treeman.y + 1/2 * treeman.height &&
+            1/2 * rain.height + rain.y > treeman.y)
         {
             return true;
         }
