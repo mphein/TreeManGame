@@ -65,63 +65,64 @@ class Play extends Phaser.Scene {
         //check collisions
         if (this.checkSlugCollision(this.treeMan, this.slug1))
         {
+            this.gameOver();
             
         }
         if (this.checkSlugCollision(this.treeMan, this.slug2))
         {
-            
+            this.gameOver();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug3))
         {
-        
+            this.gameOver();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug4))
         {
-
+            this.gameOver();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug5))
         {
-
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain1))
         {
-            
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain2))
         {
-            
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain3))
         {
-        
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain4))
         {
-
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain5))
         {
-
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain6))
         {
-            
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain7))
         {
-            
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain8))
         {
-        
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain9))
         {
-
+            this.gameOver();
         }
         if (this.checkRainCollision(this.treeMan, this.rain10))
         {
-
+            this.gameOver();
         }
 
     }
@@ -156,5 +157,11 @@ class Play extends Phaser.Scene {
         {
             return false;
         }
+    }
+
+    gameOver() {
+        let gameOverText = this.add.text(game.config.width/2, game.config.height/2, 'Game Over', { fontSize: '64px', fill: '#000' }).setOrigin(0.5);
+
+        this.scene.pause();
     }
 }
