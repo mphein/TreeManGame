@@ -18,6 +18,10 @@ class Play extends Phaser.Scene {
         this.background = this.add.tileSprite(0,0,640,480, 'rainforest').setOrigin(0,0);
         this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, 'treeman').setOrigin(.5,0);
 
+        // define keys
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);   
+
         // create 10 raindrops
         this.rain1 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
         this.rain2 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
@@ -37,9 +41,27 @@ class Play extends Phaser.Scene {
         this.slug4 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
         this.slug5 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
 
-        // define keys
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);    
+        // initialize scores
+        this.p1Score = 0;
+
+        // display score
+        let scoreConfig = 
+        {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'center',
+            padding:
+            {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+
+        this.scoreLeft = this.add.text(20, 20, this.p1Score, scoreConfig);
+ 
     }
 
     update() {
@@ -60,71 +82,83 @@ class Play extends Phaser.Scene {
         this.slug4.update();
         this.slug5.update();
 
+        this.scoreLeft.text = this.p1Score;
+
         //check collisions
         if (this.checkSlugCollision(this.treeMan, this.slug1))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.gameOver();
+            this.p1Score--;
         }
         if (this.checkSlugCollision(this.treeMan, this.slug2))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.gameOver();
+            this.p1Score--;
         }
         if (this.checkSlugCollision(this.treeMan, this.slug3))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.gameOver();
+            this.p1Score--;
         }
         if (this.checkSlugCollision(this.treeMan, this.slug4))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.gameOver();
+            this.p1Score--;
         }
         if (this.checkSlugCollision(this.treeMan, this.slug5))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.gameOver();
+            this.p1Score--;
         }
         if (this.checkRainCollision(this.treeMan, this.rain1))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
         if (this.checkRainCollision(this.treeMan, this.rain2))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
         if (this.checkRainCollision(this.treeMan, this.rain3))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
         if (this.checkRainCollision(this.treeMan, this.rain4))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
         if (this.checkRainCollision(this.treeMan, this.rain5))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
         if (this.checkRainCollision(this.treeMan, this.rain6))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
         if (this.checkRainCollision(this.treeMan, this.rain7))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
         if (this.checkRainCollision(this.treeMan, this.rain8))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
         if (this.checkRainCollision(this.treeMan, this.rain9))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
         if (this.checkRainCollision(this.treeMan, this.rain10))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
+            this.p1Score++;
         }
 
     }
