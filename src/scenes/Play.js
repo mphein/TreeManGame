@@ -23,23 +23,23 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);   
 
         // create 10 raindrops
-        this.rain1 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain2 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain3 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain4 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain5 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain6 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain7 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain8 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain9 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
-        this.rain10 = new FallingFriend(this, Math.random() * game.config.width,0,Math.random() * 3 + 1,'raindrop').setOrigin(.5,0);
+        this.rain1 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() + 1,'raindrop').setOrigin(.5,0);
+        this.rain2 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() + 1,'raindrop').setOrigin(.5,0);
+        this.rain3 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() + 1,'raindrop').setOrigin(.5,0);
+        this.rain4 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() + 1,'raindrop').setOrigin(.5,0);
+        this.rain5 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() + 1,'raindrop').setOrigin(.5,0);
+        this.rain6 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() + 1,'raindrop').setOrigin(.5,0);
+        this.rain7 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() + 1,'raindrop').setOrigin(.5,0);
+        this.rain8 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() + 1,'raindrop').setOrigin(.5,0);
+        this.rain9 = new FallingFriend(this, Math.random() * game.config.width,0, Math.random() + 1,'raindrop').setOrigin(.5,0);
+        this.rain10 = new FallingFriend(this, Math.random() * game.config.width,0,Math.random() + 1,'raindrop').setOrigin(.5,0);
 
         // create 5 falling slugs
-        this.slug1 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
-        this.slug2 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
-        this.slug3 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
-        this.slug4 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
-        this.slug5 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() * 6 + 1,'slug').setOrigin(.5,0);
+        this.slug1 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() + 1,'slug').setOrigin(.5,0);
+        this.slug2 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() + 1,'slug').setOrigin(.5,0);
+        this.slug3 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() + 1,'slug').setOrigin(.5,0);
+        this.slug4 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() + 1,'slug').setOrigin(.5,0);
+        this.slug5 = new FallingHostile(this, Math.random() * game.config.width,0,Math.random() + 1,'slug').setOrigin(.5,0);
 
         // initialize scores
         this.p1Score = 0;
@@ -65,6 +65,9 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        if (this.p1Score < 0) {
+            this.gameOver();
+        }
         this.treeMan.update();
         this.rain1.update();
         this.rain2.update();
@@ -88,77 +91,92 @@ class Play extends Phaser.Scene {
         if (this.checkSlugCollision(this.treeMan, this.slug1))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.p1Score--;
+            this.p1Score -= 5;
+            this.slug1.reset();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug2))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.p1Score--;
+            this.p1Score-= 5;
+            this.slug2.reset();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug3))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.p1Score--;
+            this.p1Score-= 5;
+            this.slug3.reset();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug4))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.p1Score--;
+            this.p1Score-= 5;
+            this.slug4.reset();
         }
         if (this.checkSlugCollision(this.treeMan, this.slug5))
         {
             this.sound.play('slugCollision', {volume: .1, loop: false});
-            this.p1Score--;
+            this.p1Score-= 5;
+            this.slug5.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain1))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain1.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain2))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain2.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain3))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain3.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain4))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain4.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain5))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain5.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain6))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain6.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain7))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain7.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain8))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain8.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain9))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain9.reset();
         }
         if (this.checkRainCollision(this.treeMan, this.rain10))
         {
             this.sound.play('rainCollision', {volume: .1, loop: false});
             this.p1Score++;
+            this.rain10.reset();
         }
 
     }
@@ -197,7 +215,6 @@ class Play extends Phaser.Scene {
 
     gameOver() {
         let gameOverText = this.add.text(game.config.width/2, game.config.height/2, 'Game Over', { fontSize: '64px', fill: '#000' }).setOrigin(0.5);
-
         this.scene.pause();
     }
 }
