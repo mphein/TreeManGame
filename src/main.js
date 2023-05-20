@@ -3,6 +3,12 @@ let config = {
     width: 512,
     height: 480,
     scene: [ Menu, Play ], 
+    physics: {
+      default: 'arcade',
+      arcade: {
+        debug: true,
+      }
+    },
     fps: {
       target: 60,
       forceSetTimeout: true
