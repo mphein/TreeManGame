@@ -17,5 +17,7 @@ let config = {
   
 let game = new Phaser.Game(config);
 
+let moveSpeed = 3;
+
 // reserve keyboard vars
-let keyLEFT, keyRIGHT, keyF, keyU;
+let keyLEFT, keyRIGHT, keyUP, keyF, keyU;

@@ -16,7 +16,7 @@ class Play extends Phaser.Scene {
     {
 
         this.background = this.add.tileSprite(0,0,640,480, 'rainforest').setOrigin(0,0);
-        this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, 3, 'treeman').setOrigin(.5,0);
+        this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, moveSpeed, 'treeman').setOrigin(.5,0);
         this.treeMan.setSize(40,75)
 
         // define keys
