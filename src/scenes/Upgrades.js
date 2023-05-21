@@ -84,6 +84,8 @@ class Upgrades extends Phaser.Scene {
             this.upgradesDesc.setText(this.hitpointsDesc);
             if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // increase number of projectiles able to hit
+
+                this.scene.start('menuScene');
             }
         }
         if (this.selectPos == 1) { // speed
@@ -91,18 +93,23 @@ class Upgrades extends Phaser.Scene {
             if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // Increase movement speed
                 moveSpeed++;
+                this.scene.start('menuScene');
             }
         }
         if (this.selectPos == 2) { // shrink
             this.upgradesDesc.setText(this.shrinkDesc);
             if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // Size decreases
+
+                this.scene.start('menuScene');
             }
         }
         if (this.selectPos == 3) { // rainValue
             this.upgradesDesc.setText(this.rainValueDesc);
             if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // point value increment increase
+
+                this.scene.start('menuScene');
             }
         }
     }
