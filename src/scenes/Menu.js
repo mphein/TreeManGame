@@ -55,6 +55,7 @@ class Menu extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        keyU = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.U);
 
     }
 
@@ -63,6 +64,10 @@ class Menu extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keyF))
         {
             this.scene.start('playScene');
+        }
+        if(Phaser.Input.Keyboard.JustDown(keyU))
+        {
+            this.scene.start('upgradesScene');
         }
 
     }
