@@ -36,6 +36,7 @@ class Upgrades extends Phaser.Scene {
             fixedWidth: 0
         }
         this.add.text(game.config.width/2, 20, 'Upgrades', upgradesKeyConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height - 50, 'Press ← and → to see upgrades\nPress ↑ to select upgrade', upgradesKeyConfig).setOrigin(0.5);
 
         // Make all upgrades visible
         this.hitpoints = this.physics.add.group();
@@ -54,6 +55,13 @@ class Upgrades extends Phaser.Scene {
         this.upgradesSelect = this.physics.add.sprite((game.config.width / 4) - ((game.config.width / 4) / 2), (game.config.height / 2), 'upgradesSelect').setScale(1);
 
         this.selectPos = 0;
+
+        this.hitpointsDesc = 'Health:\nYou can hit more projectiles';
+        this.speedDesc = 'Speed:\nTree can move faster!';
+        this.shrinkDesc = 'Shrink: \nBecome a smaller tree';
+        this.rainValueDesc = 'Rain Efficiency:\nEach rain counts for more points';
+
+        this.upgradesDesc = this.add.text(game.config.width/2, (game.config.height / 4), this.hitpointsDesc, upgradesKeyConfig).setOrigin(0.5);
     }
 
     update()
@@ -67,26 +75,35 @@ class Upgrades extends Phaser.Scene {
         }
         if(Phaser.Input.Keyboard.JustDown(keyRIGHT))
         {
-            if (this.selectPos < 3) { // sprite from moving off screen
+            if (this.selectPos < 3) { // prevent sprite from moving off screen
                 this.upgradesSelect.x += (game.config.width / 4);
                 this.selectPos++;
             }
         }
-        if(Phaser.Input.Keyboard.JustDown(keyUP))
-        {
-            if (this.selectPos == 0) { // hitpoints
+        if (this.selectPos == 0) { // hitpoints
+            this.upgradesDesc.setText(this.hitpointsDesc);
+            if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // increase number of projectiles able to hit
             }
-            if (this.selectPos == 1) { // speed
+        }
+        if (this.selectPos == 1) { // speed
+            this.upgradesDesc.setText(this.speedDesc);
+            if(Phaser.Input.Keyboard.JustDown(keyUP)) {
+                // Increase movement speed
                 moveSpeed++;
             }
-            if (this.selectPos == 2) { // shrink
-                // size increase
+        }
+        if (this.selectPos == 2) { // shrink
+            this.upgradesDesc.setText(this.shrinkDesc);
+            if(Phaser.Input.Keyboard.JustDown(keyUP)) {
+                // Size decreases
             }
-            if (this.selectPos == 3) { // rainValue
+        }
+        if (this.selectPos == 3) { // rainValue
+            this.upgradesDesc.setText(this.rainValueDesc);
+            if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // point value increment increase
             }
-            this.scene.start('menuScene');
         }
     }
 }
