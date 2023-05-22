@@ -100,7 +100,7 @@ class Upgrades extends Phaser.Scene {
             this.upgradesDesc.setText(this.shrinkDesc);
             if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // Size decreases
-
+                this.upgradesSelect.scale -= 0.1;
                 this.scene.start('menuScene');
             }
         }
@@ -108,7 +108,7 @@ class Upgrades extends Phaser.Scene {
             this.upgradesDesc.setText(this.rainValueDesc);
             if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // point value increment increase
-
+                this.p1score+2;
                 this.scene.start('menuScene');
             }
         }
