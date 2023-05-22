@@ -1,6 +1,6 @@
-class Play extends Phaser.Scene {
+class PlayTwo extends Phaser.Scene {
     constructor() {
-        super("playScene");
+        super("playScene2");
     }
 
     preload() {
@@ -14,6 +14,7 @@ class Play extends Phaser.Scene {
     
     create() 
     {
+        this.sceneOver = false;
 
         this.background = this.add.tileSprite(0,0,640,480, 'rainforest').setOrigin(0,0);
         this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, moveSpeed, 'treeman').setOrigin(.5,0);
@@ -61,20 +62,41 @@ class Play extends Phaser.Scene {
         }
 
         this.scoreLeft = this.add.text(20, 20, this.p1Score, scoreConfig);
+
+        this.countdown = this.add.text(320, 32);
+
+        this.timedEvent = this.time.delayedCall(gameTimer, this.onEvent, [], this);
+
+
+
+        this.clock = this.time.delayedCall(gameTimer, () => 
+        {
+            this.sound.stopAll();
+
+            passLevel1 = true;
+
+            levelText = 'Level 1';
+
+            this.sceneOver = true;
+
+            this.scene.start('upgradesScene');
+
+        }, null, this);
  
     }
 
     update() {
-        if (this.p1Score < 0) {
-            this.gameOver();
+        this.countdown.setText(`Time Left: ${parseFloat(gameTimer/1000 - ((this.timedEvent.getProgress())*(gameTimer/1000))).toFixed(2)}`);
+
+        if (!this.sceneOver) {
+            this.treeMan.update();
+            this.rainGroup.children.each((raindrop)=> {
+                raindrop.update();
+            })
+            this.slugGroup.children.each((slug)=> {
+                slug.update();
+            })
         }
-        this.treeMan.update();
-        this.rainGroup.children.each((raindrop)=> {
-            raindrop.update();
-        })
-        this.slugGroup.children.each((slug)=> {
-            slug.update();
-        })
         this.scoreLeft.text = this.p1Score;
     }
 
@@ -92,9 +114,4 @@ class Play extends Phaser.Scene {
         slug.reset();
     }
     
-
-    gameOver() {
-        let gameOverText = this.add.text(game.config.width/2, game.config.height/2, 'Game Over', { fontSize: '64px', fill: '#000' }).setOrigin(0.5);
-        this.scene.pause();
-    }
 }

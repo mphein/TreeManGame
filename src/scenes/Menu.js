@@ -61,14 +61,79 @@ class Menu extends Phaser.Scene {
 
     update()
     {
-        if(Phaser.Input.Keyboard.JustDown(keyF))
+        if(!passLevel1)
         {
-            this.scene.start('playScene');
+            if(Phaser.Input.Keyboard.JustDown(keyF))
+            {
+                this.scene.start('playScene1');
+            }
         }
         if(Phaser.Input.Keyboard.JustDown(keyU))
         {
             this.scene.start('upgradesScene');
         }
+
+        let menuKeyConfig = 
+        {
+            fontFamily: 'Courier',
+            fontSize: '20px',
+            backgroundColor: '#000000',
+            color: '#FFD700',
+            align: 'center',
+            padding:
+            {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+        }
+
+        if(passLevel1)
+        {
+            this.add.text(game.config.width - 60, game.config.height - 30, levelText, menuKeyConfig).setOrigin(0.5);
+
+            if(Phaser.Input.Keyboard.JustDown(keyLEFT))
+            {
+                switch(levelText)
+                {
+                    case 'Level 1':
+                        levelText = 'Level 2';
+                        break;
+
+                    default:
+                        levelText = 'Level 1';
+                        break;
+                }
+            }
+            if(Phaser.Input.Keyboard.JustDown(keyRIGHT))
+            {
+                switch(levelText)
+                {
+                    case 'Level 1':
+                        levelText = 'Level 2';
+                        break;
+
+                    default:
+                        levelText = 'Level 1';
+                        break;
+                }
+            }
+
+            if(Phaser.Input.Keyboard.JustDown(keyF))
+            {
+                switch(levelText)
+                {
+                    case 'Level 1':
+                        this.scene.start('playScene1');
+                        break;
+
+                    default:
+                        this.scene.start('playScene2');
+                        break;
+                }
+            }
+        }
+
 
     }
 }
