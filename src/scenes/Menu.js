@@ -61,18 +61,6 @@ class Menu extends Phaser.Scene {
 
     update()
     {
-        if(!passLevel1)
-        {
-            if(Phaser.Input.Keyboard.JustDown(keyF))
-            {
-                this.scene.start('playScene1');
-            }
-        }
-        if(Phaser.Input.Keyboard.JustDown(keyU))
-        {
-            this.scene.start('upgradesScene');
-        }
-
         let menuKeyConfig = 
         {
             fontFamily: 'Courier',
@@ -88,20 +76,33 @@ class Menu extends Phaser.Scene {
             fixedWidth: 0
         }
 
+        if(!passLevel1)
+        {
+            this.add.text(game.config.width/2, 60, levelText + '\n' + totalScore + '/100 Rain', menuKeyConfig).setOrigin(0.5);
+            if(Phaser.Input.Keyboard.JustDown(keyF))
+            {
+                this.scene.start('playScene1');
+            }
+        }
+        if(Phaser.Input.Keyboard.JustDown(keyU))
+        {
+            this.scene.start('upgradesScene');
+        }
+        
         if(passLevel1)
         {
-            this.add.text(game.config.width - 60, game.config.height - 30, levelText, menuKeyConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, 60, levelText + '\n' + totalScore + '/500 Rain', menuKeyConfig).setOrigin(0.5);
 
             if(Phaser.Input.Keyboard.JustDown(keyLEFT))
             {
                 switch(levelText)
                 {
-                    case 'Level 1':
-                        levelText = 'Level 2';
+                    case '← Level 1 →':
+                        levelText = '← Level 2 →';
                         break;
 
                     default:
-                        levelText = 'Level 1';
+                        levelText = '← Level 1 →';
                         break;
                 }
             }
@@ -109,12 +110,12 @@ class Menu extends Phaser.Scene {
             {
                 switch(levelText)
                 {
-                    case 'Level 1':
-                        levelText = 'Level 2';
+                    case '← Level 1 →':
+                        levelText = '← Level 2 →';
                         break;
 
                     default:
-                        levelText = 'Level 1';
+                        levelText = '← Level 1 →';
                         break;
                 }
             }
@@ -123,7 +124,7 @@ class Menu extends Phaser.Scene {
             {
                 switch(levelText)
                 {
-                    case 'Level 1':
+                    case '← Level 1 →':
                         this.scene.start('playScene1');
                         break;
 

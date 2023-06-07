@@ -6,7 +6,7 @@ class Upgrades extends Phaser.Scene {
     preload()
     {
         //load menu image
-        this.load.image('hitpoints', './assets/hitpoints.png');
+        this.load.image('strengthen', './assets/hitpoints.png');
         this.load.image('speed', './assets/speed.png');
         this.load.image('shrink', './assets/shrink.png');
         this.load.image('rainValue', './assets/rainValue.png');
@@ -39,8 +39,8 @@ class Upgrades extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height - 50, 'Press ← and → to see upgrades\nPress ↑ to select upgrade', upgradesKeyConfig).setOrigin(0.5);
 
         // Make all upgrades visible
-        this.hitpoints = this.physics.add.group();
-        this.hitpoints.create((game.config.width / 4) - ((game.config.width / 4) / 2), (game.config.height / 2), 'hitpoints').setScale(0.5);
+        this.strengthen = this.physics.add.group();
+        this.strengthen.create((game.config.width / 4) - ((game.config.width / 4) / 2), (game.config.height / 2), 'strengthen').setScale(0.5);
 
         this.speed = this.physics.add.group();
         this.speed.create((game.config.width / 4) * 2 - ((game.config.width / 4) / 2), (game.config.height / 2), 'speed').setScale(0.5);
@@ -56,8 +56,8 @@ class Upgrades extends Phaser.Scene {
 
         this.selectPos = 0;
 
-        this.hitpointsDesc = 'Health:\nYou can hit more projectiles';
-        this.speedDesc = 'Speed:\nTree can move faster!';
+        this.strengthenDesc = 'Strengthen:\nHitting projectiles subtracts less points';
+        this.speedDesc = 'Speed:\nTree can move faster';
         this.shrinkDesc = 'Shrink: \nBecome a smaller tree';
         this.rainValueDesc = 'Rain Efficiency:\nEach rain counts for more points';
 
@@ -80,11 +80,13 @@ class Upgrades extends Phaser.Scene {
                 this.selectPos++;
             }
         }
-        if (this.selectPos == 0) { // hitpoints
-            this.upgradesDesc.setText(this.hitpointsDesc);
+        if (this.selectPos == 0) { // strengthen
+            this.upgradesDesc.setText(this.strengthenDesc);
             if(Phaser.Input.Keyboard.JustDown(keyUP)) {
-                // increase number of projectiles able to hit
-
+                // Decrease point reduction when hitting projectiles
+                if (scoreDecrease > 0) {
+                    scoreDecrease -= 0.5;
+                }
                 this.scene.start('menuScene');
             }
         }
@@ -100,7 +102,7 @@ class Upgrades extends Phaser.Scene {
             this.upgradesDesc.setText(this.shrinkDesc);
             if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // Size decreases
-                this.upgradesSelect.scale -= 0.1;
+                treeManScale -= 0.1;
                 this.scene.start('menuScene');
             }
         }
@@ -108,7 +110,7 @@ class Upgrades extends Phaser.Scene {
             this.upgradesDesc.setText(this.rainValueDesc);
             if(Phaser.Input.Keyboard.JustDown(keyUP)) {
                 // point value increment increase
-                this.p1score+2;
+                scoreIncrease++;
                 this.scene.start('menuScene');
             }
         }

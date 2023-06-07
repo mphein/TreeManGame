@@ -19,11 +19,19 @@ let game = new Phaser.Game(config);
 
 let moveSpeed = 3;
 
+let scoreIncrease = 1;
+
+let scoreDecrease = 2;
+
+let totalScore = 0;
+
+let treeManScale = 1;
+
 let gameTimer = 60000;
 
 let passLevel1 = false;
 
-let levelText = '';
+let levelText = 'Level 1';
 
 // reserve keyboard vars
 let keyLEFT, keyRIGHT, keyUP, keyF, keyU;

@@ -18,7 +18,8 @@ class PlayTwo extends Phaser.Scene {
 
         this.background = this.add.tileSprite(0,0,640,480, 'rainforest').setOrigin(0,0);
         this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, moveSpeed, 'treeman').setOrigin(.5,0);
-        this.treeMan.setSize(40,75)
+        this.treeMan.setSize(40,75);
+        this.treeMan.setScale(treeManScale);
 
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -75,8 +76,6 @@ class PlayTwo extends Phaser.Scene {
 
             passLevel1 = true;
 
-            levelText = 'Level 1';
-
             this.sceneOver = true;
 
             this.scene.start('upgradesScene');
@@ -103,14 +102,18 @@ class PlayTwo extends Phaser.Scene {
     rainCollision(treeman, rain)
     {
         this.sound.play('rainCollision', {volume: .1, loop: false});
-        this.p1Score++;
+        this.p1Score += scoreIncrease;
         rain.reset();
     }
 
     slugCollision(treeman, slug)
     {
         this.sound.play('slugCollision', {volume: .1, loop: false});
-        this.p1Score++;
+        this.p1Score -= scoreIncrease * scoreDecrease;
+        if (this.p1Score < 0) {
+            this.p1Score = 0;
+        }
+        this.p1Score = Math.round(this.p1Score);
         slug.reset();
     }
     
