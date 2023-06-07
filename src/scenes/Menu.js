@@ -113,6 +113,20 @@ class Menu extends Phaser.Scene {
                         break;
                 }
             }
+
+            if(Phaser.Input.Keyboard.JustDown(keyF))
+            {
+                switch(levelText)
+                {
+                    case '← Level 1 →':
+                        this.scene.start('playScene1');
+                        break;
+
+                    default:
+                        this.scene.start('playScene2');
+                        break;
+                }
+            }
         }
     }
 }
