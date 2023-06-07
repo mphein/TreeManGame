@@ -13,7 +13,6 @@ class Menu extends Phaser.Scene {
 
         //load menu image
         this.load.image('menuArt', './assets/menuArt.png');
-
     }
 
     create() 
@@ -56,11 +55,15 @@ class Menu extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyU = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.U);
-
     }
 
     update()
     {
+        if(Phaser.Input.Keyboard.JustDown(keyU))
+        {
+            this.scene.start('upgradesScene');
+        }
+        
         let menuKeyConfig = 
         {
             fontFamily: 'Courier',
@@ -84,57 +87,32 @@ class Menu extends Phaser.Scene {
                 this.scene.start('playScene1');
             }
         }
-        if(Phaser.Input.Keyboard.JustDown(keyU))
-        {
-            this.scene.start('upgradesScene');
-        }
         
         if(passLevel1)
         {
             this.add.text(game.config.width/2, 60, levelText + '\n' + totalScore + '/500 Rain', menuKeyConfig).setOrigin(0.5);
 
-            if(Phaser.Input.Keyboard.JustDown(keyLEFT))
+            if(Phaser.Input.Keyboard.JustDown(keyLEFT) || Phaser.Input.Keyboard.JustDown(keyRIGHT) || Phaser.Input.Keyboard.JustDown(keyF))
             {
                 switch(levelText)
                 {
                     case '← Level 1 →':
+                        if(Phaser.Input.Keyboard.JustDown(keyF)) {
+                            this.scene.start('playScene1');
+                            break;
+                        }
                         levelText = '← Level 2 →';
                         break;
 
                     default:
+                        if(Phaser.Input.Keyboard.JustDown(keyF)) {
+                            this.scene.start('playScene2');
+                            break;
+                        }
                         levelText = '← Level 1 →';
-                        break;
-                }
-            }
-            if(Phaser.Input.Keyboard.JustDown(keyRIGHT))
-            {
-                switch(levelText)
-                {
-                    case '← Level 1 →':
-                        levelText = '← Level 2 →';
-                        break;
-
-                    default:
-                        levelText = '← Level 1 →';
-                        break;
-                }
-            }
-
-            if(Phaser.Input.Keyboard.JustDown(keyF))
-            {
-                switch(levelText)
-                {
-                    case '← Level 1 →':
-                        this.scene.start('playScene1');
-                        break;
-
-                    default:
-                        this.scene.start('playScene2');
                         break;
                 }
             }
         }
-
-
     }
 }

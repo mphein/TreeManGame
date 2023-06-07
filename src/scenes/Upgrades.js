@@ -11,7 +11,6 @@ class Upgrades extends Phaser.Scene {
         this.load.image('shrink', './assets/shrink.png');
         this.load.image('rainValue', './assets/rainValue.png');
         this.load.image('upgradesSelect', './assets/upgradesSelect.png');
-
     }
 
     create() 
@@ -45,7 +44,7 @@ class Upgrades extends Phaser.Scene {
         this.speed = this.physics.add.group();
         this.speed.create((game.config.width / 4) * 2 - ((game.config.width / 4) / 2), (game.config.height / 2), 'speed').setScale(0.5);
 
-        this.shrink= this.physics.add.group();
+        this.shrink = this.physics.add.group();
         this.shrink.create((game.config.width / 4) * 3 - ((game.config.width / 4) / 2), (game.config.height / 2), 'shrink').setScale(0.5);
 
         this.rainValue = this.physics.add.group();

@@ -9,7 +9,6 @@ class PlayTwo extends Phaser.Scene {
         this.load.image('treeman', './assets/playerSprite.png');
         this.load.image('raindrop', './assets/raindrop.png');
         this.load.image('slug', './assets/slugSprite0.png');
-
     }
     
     create() 
@@ -68,20 +67,19 @@ class PlayTwo extends Phaser.Scene {
 
         this.timedEvent = this.time.delayedCall(gameTimer, this.onEvent, [], this);
 
-
-
         this.clock = this.time.delayedCall(gameTimer, () => 
         {
             this.sound.stopAll();
-
             totalScore += this.p1Score;
-
             this.sceneOver = true;
 
-            this.scene.start('upgradesScene');
+            if (totalScore >= 100) {
+                passLevel1 = true;
+                levelText = '← Level 1 →';
+            }
 
+            this.scene.start('upgradesScene');
         }, null, this);
- 
     }
 
     update() {
@@ -116,5 +114,4 @@ class PlayTwo extends Phaser.Scene {
         this.p1Score = Math.round(this.p1Score);
         slug.reset();
     }
-    
 }

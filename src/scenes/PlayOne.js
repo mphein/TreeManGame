@@ -68,17 +68,12 @@ class PlayOne extends Phaser.Scene {
 
         this.timedEvent = this.time.delayedCall(gameTimer, this.onEvent, [], this);
 
-
-
         this.clock = this.time.delayedCall(gameTimer, () => 
         {
             this.sound.stopAll();
-
             totalScore += this.p1Score;
-
-            levelText = 'Level 1';
-
             this.sceneOver = true;
+            levelText = 'Level 1';
 
             if (totalScore >= 100) {
                 passLevel1 = true;
@@ -86,10 +81,7 @@ class PlayOne extends Phaser.Scene {
             }
 
             this.scene.start('upgradesScene');
-
-
         }, null, this);
- 
     }
 
     update() {
@@ -124,5 +116,4 @@ class PlayOne extends Phaser.Scene {
         this.p1Score = Math.round(this.p1Score);
         slug.reset();
     }
-    
 }
