@@ -74,7 +74,7 @@ class PlayTwo extends Phaser.Scene {
         {
             this.sound.stopAll();
 
-            passLevel1 = true;
+            totalScore += this.p1Score;
 
             this.sceneOver = true;
 

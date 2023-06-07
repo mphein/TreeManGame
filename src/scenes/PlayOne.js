@@ -76,13 +76,14 @@ class PlayOne extends Phaser.Scene {
 
             totalScore += this.p1Score;
 
-            if (totalScore >= 100) {
-                passLevel1 = true;
-            }
-
-            levelText = '← Level 1 →';
+            levelText = 'Level 1';
 
             this.sceneOver = true;
+
+            if (totalScore >= 100) {
+                passLevel1 = true;
+                levelText = '← Level 1 →';
+            }
 
             this.scene.start('upgradesScene');
 
