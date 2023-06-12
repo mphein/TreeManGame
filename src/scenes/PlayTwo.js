@@ -1,11 +1,13 @@
 class PlayTwo extends Phaser.Scene {
-    constructor() {
+    constructor() 
+    {
         super("playScene2");
     }
 
-    preload() {
+    preload() 
+    {
         // load images
-        this.load.image('rainforest', './assets/background.png');
+        this.load.image('nightmtn', './assets/background3.png');
         this.load.image('treeman', './assets/playerSprite.png');
         this.load.image('raindrop', './assets/raindrop.png');
         this.load.image('slug', './assets/slugSprite0.png');
@@ -15,7 +17,14 @@ class PlayTwo extends Phaser.Scene {
     {
         this.sceneOver = false;
 
-        this.background = this.add.tileSprite(0,0,640,480, 'rainforest').setOrigin(0,0);
+        this.background = this.add.tileSprite(0,0,640,480, 'nightmtn').setOrigin(0,0);
+
+        this.cameras.main.setViewport(0, 0, 512, 512);
+
+        this.fadeCamera = this.cameras.add(0, 0, 512, 512);
+
+        this.fadeCamera.fade(1000);
+
         this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, moveSpeed, 'treeman').setOrigin(.5,0);
         this.treeMan.setSize(40,75);
         this.treeMan.setScale(treeManScale);
@@ -73,8 +82,8 @@ class PlayTwo extends Phaser.Scene {
             totalScore += this.p1Score;
             this.sceneOver = true;
 
-            if (totalScore >= 100) {
-                passLevel1 = true;
+            if (totalScore >= 500) {
+                passLevel2 = true;
                 levelText = '← Level 1 →';
             }
 
@@ -82,8 +91,18 @@ class PlayTwo extends Phaser.Scene {
         }, null, this);
     }
 
-    update() {
+    update() 
+    {
         this.countdown.setText(`Time Left: ${parseFloat(gameTimer/1000 - ((this.timedEvent.getProgress())*(gameTimer/1000))).toFixed(2)}`);
+
+        if (this.fadeCamera.fadeEffect.alpha >= 1)
+        {
+            this.fadeCamera.fadeEffect.alpha = 0;
+            this.clock = this.time.delayedCall(500, () => 
+            {   
+                this.fadeCamera.fade(1000);
+            }, null, this);
+        }
 
         if (!this.sceneOver) {
             this.treeMan.update();

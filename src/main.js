@@ -2,7 +2,7 @@ let config = {
     type: Phaser.CANVAS,
     width: 512,
     height: 480,
-    scene: [ Menu, PlayOne, PlayTwo, Upgrades ], 
+    scene: [ Menu, PlayOne, PlayTwo, PlayThree, Upgrades, Credits ], 
     physics: {
       default: 'arcade',
       arcade: {
@@ -23,6 +23,8 @@ let totalScore = 0;
 let treeManScale = 1;
 let gameTimer = 60000;
 let passLevel1 = false;
+let passLevel2 = false;
+let passLevel3 = false;
 let levelText = 'Level 1';
 
 // reserve keyboard vars

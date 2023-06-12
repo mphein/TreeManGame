@@ -50,6 +50,28 @@ class Menu extends Phaser.Scene {
         // show menu key text
         this.add.text(game.config.width/2, game.config.height - 50, 'Press ← and → for movement \nF to start', menuKeyConfig).setOrigin(0.5);
 
+        let creditsButton = this.add.text(game.config.width/2, 400, '(Click for Credits)', menuKeyConfig).setOrigin(0.5);
+
+        creditsButton.setInteractive
+        ({
+            useHandCursor: true,
+        });
+
+        creditsButton.on('pointermove', () => 
+        {
+            creditsButton.setTint(0xffffff);
+
+            this.clock = this.time.delayedCall(500, () => 
+            {
+                creditsButton.setTint(0x81007f);
+            }, null, this);
+        }, this);
+
+        creditsButton.once('pointerdown', () => 
+        {
+            this.scene.run('creditScene')
+        });
+
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
@@ -88,11 +110,11 @@ class Menu extends Phaser.Scene {
             }
         }
         
-        if(passLevel1)
+        if(passLevel1 && !passLevel2)
         {
             this.add.text(game.config.width/2, 60, levelText + '\n' + totalScore + '/500 Rain', menuKeyConfig).setOrigin(0.5);
 
-            if(Phaser.Input.Keyboard.JustDown(keyLEFT) || Phaser.Input.Keyboard.JustDown(keyRIGHT) || Phaser.Input.Keyboard.JustDown(keyF))
+            if(Phaser.Input.Keyboard.JustDown(keyLEFT) || Phaser.Input.Keyboard.JustDown(keyRIGHT))
             {
                 switch(levelText)
                 {
@@ -124,6 +146,59 @@ class Menu extends Phaser.Scene {
 
                     default:
                         this.scene.start('playScene2');
+                        break;
+                }
+            }
+        }
+        
+        if(passLevel1 && passLevel2)
+        {
+            this.add.text(game.config.width/2, 60, levelText + '\n' + totalScore + '/1000 Rain', menuKeyConfig).setOrigin(0.5);
+
+            if(Phaser.Input.Keyboard.JustDown(keyLEFT) || Phaser.Input.Keyboard.JustDown(keyRIGHT))
+            {
+                switch(levelText)
+                {
+                    case '← Level 1 →':
+                        if(Phaser.Input.Keyboard.JustDown(keyF)) {
+                            this.scene.start('playScene1');
+                            break;
+                        }
+                        levelText = '← Level 2 →';
+                        break;
+
+                    case '← Level 2 →':
+                        if(Phaser.Input.Keyboard.JustDown(keyF)) {
+                            this.scene.start('playScene3');
+                            break;
+                        }
+                        levelText = '← Level 3 →';
+                        break; 
+
+                    default:
+                        if(Phaser.Input.Keyboard.JustDown(keyF)) {
+                            this.scene.start('playScene2');
+                            break;
+                        }
+                        levelText = '← Level 1 →';
+                        break;
+                }
+            }
+
+            if(Phaser.Input.Keyboard.JustDown(keyF))
+            {
+                switch(levelText)
+                {
+                    case '← Level 1 →':
+                        this.scene.start('playScene1');
+                        break;
+
+                    case '← Level 2 →':
+                        this.scene.start('playScene2');
+                        break;
+
+                    default:
+                        this.scene.start('playScene3');
                         break;
                 }
             }

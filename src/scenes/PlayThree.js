@@ -1,24 +1,23 @@
-class PlayOne extends Phaser.Scene {
+class PlayThree extends Phaser.Scene {
     constructor() 
     {
-        super("playScene1");
+        super("playScene3");
     }
 
     preload() 
     {
         // load images
-        this.load.image('desert', './assets/background2.png');
+        this.load.image('rainforest', './assets/background.png');
         this.load.image('treeman', './assets/playerSprite.png');
         this.load.image('raindrop', './assets/raindrop.png');
         this.load.image('slug', './assets/slugSprite0.png');
-
     }
     
     create() 
     {
         this.sceneOver = false;
 
-        this.background = this.add.tileSprite(0,0,640,480, 'desert').setOrigin(0,0);
+        this.background = this.add.tileSprite(0,0,640,480, 'rainforest').setOrigin(0,0);
         this.treeMan = new Treeman(this, game.config.width/2, game.config.height - 100, moveSpeed, 'treeman').setOrigin(.5,0);
         this.treeMan.setSize(40,75);
         this.treeMan.setScale(treeManScale);
@@ -38,7 +37,7 @@ class PlayOne extends Phaser.Scene {
         // slug group
         // create 5 falling slugs
         this.slugGroup = this.physics.add.group();
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 10; i++) {
             let currSlug = new FallingHostile(this, Math.random() * game.config.width,0, Math.random() + 2,'slug').setOrigin(.5,0);
             currSlug.setSize(25,50)
             this.slugGroup.add(currSlug, false);
@@ -75,10 +74,9 @@ class PlayOne extends Phaser.Scene {
             this.sound.stopAll();
             totalScore += this.p1Score;
             this.sceneOver = true;
-            levelText = 'Level 1';
 
-            if (totalScore >= 100) {
-                passLevel1 = true;
+            if (totalScore >= 1000) {
+                passLevel3 = true;
                 levelText = '← Level 1 →';
             }
 
